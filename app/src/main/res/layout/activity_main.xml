@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/dbListScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txtString">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dbList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <EditText
+        android:id="@+id/txtString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Add Text Here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dbListScrollView"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreate"/>
+
+
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="456dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtString"
+        app:layout_constraintBottom_toTopOf="@+id/btnUpdate"/>
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="517dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreate"
+        app:layout_constraintBottom_toTopOf="@+id/btnQuit"/>
+
+    <Button
+        android:id="@+id/btnQuit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quit"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="642dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

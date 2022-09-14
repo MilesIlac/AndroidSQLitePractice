@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/dbListScrollView"
         android:layout_width="wrap_content"
@@ -19,6 +20,7 @@
             android:id="@+id/dbList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="400dp"
             />
 
     </androidx.core.widget.NestedScrollView>

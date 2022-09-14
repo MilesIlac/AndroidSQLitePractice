@@ -49,6 +49,27 @@ public class DBHelper extends SQLiteOpenHelper {
         return insert != -1;
     }
 
+    public boolean deleteEntry(StringEntry stringEntry) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        String deleteQuery = "DELETE FROM " + STRING_TABLE + " WHERE " + COLUMN_ID + " = " + stringEntry.getId();
+
+        Cursor cursor = sqLiteDatabase.rawQuery(deleteQuery,null);
+
+        if (cursor.moveToFirst()) {
+            sqLiteDatabase.close();
+            cursor.close();
+            return true;
+        }
+        else {
+            sqLiteDatabase.close();
+            cursor.close();
+            return false;
+        }
+
+
+    }
+
     public ArrayList<StringEntry> getAllTexts() {
         ArrayList<StringEntry> stringEntries = new ArrayList<>();
 

@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnCreate, btnUpdate, btnQuit;
     RecyclerView dbList;
     EditText txtString;
+    DBEntryRecViewAdapter dbEntryRecViewAdapter;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,34 +32,32 @@ public class MainActivity extends AppCompatActivity {
         dbList = findViewById(R.id.dbList);
         txtString = findViewById(R.id.txtString);
 
-        DBEntryRecViewAdapter dbEntryRecViewAdapter = new DBEntryRecViewAdapter();
-        dbList.setAdapter(dbEntryRecViewAdapter);
-        dbList.setLayoutManager(new LinearLayoutManager(this));
+        dbEntryRecViewAdapter = new DBEntryRecViewAdapter(dbList, this);
+        dbHelper = new DBHelper(getApplicationContext());
+
+
+        setDbEntryRecViewAdapter();
+
 
         btnCreate.setOnClickListener(view -> {
 
             StringEntry stringEntry = new StringEntry(-1, "insert date", txtString.getText().toString());
-
-
-            DBHelper dbHelper = new DBHelper(getApplicationContext());
             boolean success = dbHelper.addEntry(stringEntry);
-
             Toast.makeText(MainActivity.this,"Success= " + success, Toast.LENGTH_SHORT).show();
+            setDbEntryRecViewAdapter();
         });
 
-        btnUpdate.setOnClickListener(view -> {
+        btnUpdate.setOnClickListener(view -> setDbEntryRecViewAdapter());
 
-            DBHelper dbHelper = new DBHelper(getApplicationContext());
-            ArrayList<StringEntry> stringEntries = dbHelper.getAllTexts();
-            boolean test = dbEntryRecViewAdapter.setEntries(stringEntries);
+        btnQuit.setOnClickListener(view -> finish());
 
-            Toast.makeText(MainActivity.this,"Success = "+test+"\n"+stringEntries.toString(), Toast.LENGTH_SHORT).show();
-            dbList.setAdapter(dbEntryRecViewAdapter);
-            dbList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-        });
 
-        btnQuit.setOnClickListener(view -> {
-            Toast.makeText(MainActivity.this,"btnQuit clicked", Toast.LENGTH_SHORT).show();
-        });
+
+    }
+
+    private void setDbEntryRecViewAdapter() {
+        dbEntryRecViewAdapter.setEntries(dbHelper.getAllTexts());
+        dbList.setAdapter(dbEntryRecViewAdapter);
+        dbList.setLayoutManager(new LinearLayoutManager(this));
     }
 }
